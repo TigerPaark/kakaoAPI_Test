@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MapTest018.html</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5fe39ea68a92cc0e6737ce4d846d9aec"></script>
+<script type="text/javascript">
+	function initialize()
+	{
+		container = document.getElementById("map");
+		mapCenter = new kakao.maps.LatLng(37.556528, 126.919496);
+		options =
+		{
+			center: mapCenter
+			, level : 3
+		};
+		// 맵 생성
+		map = new kakao.maps.Map(container, options);
+		positions = 
+			[
+				{
+					title: "스타벅스"
+					, latlng: new kakao.maps.LatLng(37.556870, 126.919979)
+				}
+				,{
+					title: "컴포즈커피"
+					, latlng: new kakao.maps.LatLng(37.556212,126.920647)
+				}
+				,{
+					title: "메가커피"
+					, latlng: new kakao.maps.LatLng(37.555965,126.920913)
+				}
+				,{
+					title: "이디야커피"
+					, latlng: new kakao.maps.LatLng(37.555615,126.920668)
+				}
+				, {
+					title: "소림커피"
+					, latlng: new kakao.maps.LatLng(37.556248,126.919473)
+				}
+				, {
+					title: "투썸플레이스"
+					, latlng: new kakao.maps.LatLng(37.556063, 126.920175)
+				}
+			];
+			
+			// 마커 이미지 구성
+			imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+			imageSize = new kakao.maps.Size(24, 35);
+			
+			// check~!!
+			// 다중 마커 생성 → 반복문 구성
+			for (var i=0; i<positions.length; i++)
+			{
+				// 마커 이미지 생성
+				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+				
+				// 마커 생성
+				var marker = new kakao.maps.Marker(
+				{
+					// map 속성을 통해 생성된 마커가 자동으로 맵 위에 표시된다.
+					// marker.setMap(map) 코드 없이도 『map: map』 속성 구성으로
+					// 맵 위에 표시된다.
+					map: map 							//-- 마커 표시 지도	
+					, position: positions[i].latlng 	//-- 마커 표시 위치
+					, title: positions[i].title 		//-- 마커 타이틀
+					, image: markerImage 				//-- 마커 이미지
+				});
+				
+			}
+	}
+
+</script>
+</head>
+<body onload="initialize()">
+
+<!-- ○ 발급받은 App Key
+5fe39ea68a92cc0e6737ce4d846d9aec -->
+
+<!-- ○ 지도의 중심 좌표
+37.556528, 126.919496 -->
+
+<!-- ○ 길건너 스타벅스
+37.55687008292586, 126.9200528260358 -->
+
+<div>
+	<h1>Kakao Map 다중 마커 구성</h1>
+	<hr>
+</div>
+
+<div id="map" style="width: 100%; height: 400px;"></div>
+
+</body>
+</html>

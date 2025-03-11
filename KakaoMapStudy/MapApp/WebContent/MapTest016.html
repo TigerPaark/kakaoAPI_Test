@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MapTest016.html</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5fe39ea68a92cc0e6737ce4d846d9aec"></script>
+<script type="text/javascript">
+	function initialize()
+	{
+		container = document.getElementById("map");
+		mapCenter = new kakao.maps.LatLng(37.556528, 126.919496);
+		options =
+		{
+			center: mapCenter
+			, level : 3
+		};
+		// 맵 생성
+		map = new kakao.maps.Map(container, options);
+		
+		markerCenter = new kakao.maps.LatLng(37.55687008292586, 126.9200528260358);
+		
+		// 마커 생성
+		marker = new kakao.maps.Marker(
+		{
+			position: markerCenter,
+		});
+		
+		marker.setMap(map);
+		
+		var iwContent = "<div style='padding:5px;'>";
+		iwContent += "스타벅스<br>";
+		iwContent += "<a href='https://map.kakao.com/link/map/스타벅스,37.556870,126.919979' style='color:blue;' target='_blank'>큰 지도보기</a> ";
+		iwContent += "<a href='https://map.kakao.com/link/to/스타벅스,37.556870,126.919979' style='color:blue;' target='_blank'>길찾기</a>";
+		iwContent += "</div>";
+		
+		// 인포 윈도우 구성
+		var infowindow = new kakao.maps.InfoWindow(
+		{
+			position: markerCenter
+			, content: iwContent
+		});
+		infowindow.open(map, marker);
+		
+		
+	}
+
+</script>
+</head>
+<body onload="initialize()">
+
+<!-- ○ 발급받은 App Key
+5fe39ea68a92cc0e6737ce4d846d9aec -->
+
+<!-- ○ 지도의 중심 좌표
+37.556528, 126.919496 -->
+
+<!-- ○ 길건너 스타벅스
+37.55687008292586, 126.9200528260358 -->
+
+<div>
+	<h1>Kakao Map  인프윈도우 생성</h1>
+	<hr>
+</div>
+
+<div id="map" style="width: 100%; height: 400px;"></div>
+
+</body>
+</html>
